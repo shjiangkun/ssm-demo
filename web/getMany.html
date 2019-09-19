@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>getMany</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+<input type="button" value="通过AJAX获取多个Hero对象111" id="sender">
+
+<div id="messageDiv"></div>
+
+<script>
+    $('#sender').click(function(){
+        var url="getManyCategory";
+        $.post(
+            url,
+            function(data) {
+                console.log(data);
+                var categorys = $.parseJSON(data);
+                console.log(categorys.length);
+
+                for(i in categorys){
+                    var old = $("#messageDiv").html();
+                    var category = categorys[i];
+                    $("#messageDiv").html(old + "<br>"+category.id+"   -----   "+category.name);
+                }
+            });
+    });
+</script>
+</body>
+</html>
